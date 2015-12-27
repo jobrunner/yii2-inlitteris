@@ -27,7 +27,7 @@ migrations. Make sure that you have properly configured `db` application compone
 and run the following command:
 
 ```bash
-$ php yii migrate/up --migrationPath=@vendor/jobrunner/yii2-inliteris/migrations
+$ php yii migrate/up --migrationPath=@vendor/jobrunner/yii2-inlitteris/migrations
 ```
 
 ## Where do I go now?
