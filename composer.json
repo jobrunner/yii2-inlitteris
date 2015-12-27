@@ -1,0 +1,23 @@
+{
+  "name": "jobrunner/yii2-inlitteris",
+  "description": "Reference manager module for Yii2",
+  "keywords": ["yii2", "yii2-inlitteris", "reference management"],
+  "type": "yii2-extension",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Jo Brunner",
+      "email": "jo@egolab.de",
+      "homepage": "http://mayflower.de"
+    }
+  ],
+  "require": {
+      "yiisoft/yii2": "dev-master"
+  },
+  "autoload": {
+      "psr-4": {
+        "jobrunner\\inlitteris\\": ""
+      }
+  }
+}
+
