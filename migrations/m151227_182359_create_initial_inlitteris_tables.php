@@ -7,7 +7,7 @@ class m151227_182359_create_initial_inlitteris_tables extends Migration
 {
     public function safeUp()
     {
-        $this->createTable('{{%test_reference}}', [
+        $this->createTable('{{%reference}}', [
             'id'                => $this->string(48)->notNull()->unique(),
             'referenceTypeId'   => $this->smallInteger()->notNull(),
             'authors'           => $this->text()->notNull()->defaultValue(''),
@@ -27,13 +27,16 @@ class m151227_182359_create_initial_inlitteris_tables extends Migration
             'isbn'              => $this->text()->notNull()->defaultValue('')
         ]);
 
-        $this->createTable('{{%test_reference_type}}', [
+
+
+        $this->createTable('{{%reference_type}}', [
             'id'                => $this->smallInteger()->notNull()->unique(),
             'typeName'          => $this->string(40)->notNull(),
             'visible'           => $this->boolean(),
         ]);
 
-        $this->batchInsert('{{%test_reference_type}}', [
+
+        $this->batchInsert('{{%reference_type}}', [
             'id', 'typeName', 'visible'
         ],
         [
@@ -43,7 +46,8 @@ class m151227_182359_create_initial_inlitteris_tables extends Migration
             [9, 'Edited book',     true]
         ]);
 
-        $this->createTable('{{%test_reference_fieldmap}}', [
+
+        $this->createTable('{{%reference_setting}}', [
             'referenceTypeId'   => $this->smallInteger()->notNull(),
             'genericName'       => $this->string(40)->notNull(),
             'contextualName'    => $this->string(40)->notNull(),
@@ -51,7 +55,7 @@ class m151227_182359_create_initial_inlitteris_tables extends Migration
             'visible'           => $this->boolean()->defaultValue(true),
         ]);
 
-        $this->batchInsert('{{%test_reference_fieldmap}}', [
+        $this->batchInsert('{{%reference_setting}}', [
             'referenceTypeId', 'genericName', 'contextualName', 'position', 'visible'
         ],
         [
@@ -127,8 +131,8 @@ class m151227_182359_create_initial_inlitteris_tables extends Migration
     
     public function safeDown()
     {
-        $this->dropTable('{{%test_reference_fieldmap}}');
-        $this->dropTable('{{%test_reference_type}}');
-        $this->dropTable('{{%test_reference}}');
+        $this->dropTable('{{%reference_setting}}');
+        $this->dropTable('{{%reference_type}}');
+        $this->dropTable('{{%reference}}');
     }
 }
