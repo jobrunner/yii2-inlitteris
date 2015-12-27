@@ -9,7 +9,7 @@ class m151227_182359_create_initial_inlitteris_tables extends Migration
     {
         $this->createTable('{{%reference}}', [
             'id'                => $this->string(48)->notNull()->unique(),
-            'referenceTypeId'   => $this->smallInteger()->notNull(),
+            'referenceTypeId'   => $this->smallInteger(5)->notNull(),
             'authors'           => $this->text()->notNull()->defaultValue(''),
             'title'             => $this->text()->notNull()->defaultValue(''),
             'secondaryTitle'    => $this->text()->notNull()->defaultValue(''),
