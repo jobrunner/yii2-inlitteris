@@ -27,7 +27,7 @@ class m151227_182359_create_initial_inlitteris_tables extends Migration
             'isbn'              => $this->text()->notNull()->defaultValue('')
         ]);
 
-
+        $this->createIndex('pk', '{{%reference}}', 'id', true);
 
         $this->createTable('{{%reference_type}}', [
             'id'                => $this->smallInteger()->notNull()->unique(),
@@ -35,6 +35,7 @@ class m151227_182359_create_initial_inlitteris_tables extends Migration
             'visible'           => $this->boolean(),
         ]);
 
+        $this->createIndex('pk', '{{%reference_type}}', 'id', true);
 
         $this->batchInsert('{{%reference_type}}', [
             'id', 'typeName', 'visible'
@@ -46,7 +47,6 @@ class m151227_182359_create_initial_inlitteris_tables extends Migration
             [9, 'Edited book',     true]
         ]);
 
-
         $this->createTable('{{%reference_setting}}', [
             'referenceTypeId'   => $this->smallInteger()->notNull(),
             'genericName'       => $this->string(40)->notNull(),
@@ -54,6 +54,7 @@ class m151227_182359_create_initial_inlitteris_tables extends Migration
             'position'          => $this->smallInteger()->notNull()->defaultValue(0),
             'visible'           => $this->boolean()->defaultValue(true),
         ]);
+        $this->createIndex('pk', '{{%reference_setting}}', ['referenceTypeId', 'genericName'], true);
 
         $this->batchInsert('{{%reference_setting}}', [
             'referenceTypeId', 'genericName', 'contextualName', 'position', 'visible'
