@@ -11,8 +11,11 @@
       "homepage": "http://mayflower.de"
     }
   ],
+  "minimum-stability": "dev",
   "require": {
-      "yiisoft/yii2": ">=2.0.6"
+    "php": ">=5.4.0",
+    "yiisoft/yii2": "2.0.6",
+    "yiisoft/yii2-bootstrap": "*"
   },
   "require-dev": {
       "phpunit/phpunit": "3.7.*"
@@ -21,6 +24,11 @@
       "psr-4": {
         "jobrunner\\inlitteris\\": ""
       }
+  },
+  "extra": {
+    "asset-installer-paths": {
+      "npm-asset-library": "vendor/npm",
+      "bower-asset-library": "vendor/bower"
+    }
   }
 }
-
