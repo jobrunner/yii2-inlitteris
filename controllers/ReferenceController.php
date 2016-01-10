@@ -38,8 +38,10 @@ class ReferenceController extends Controller
         ];
     }
 
+
     /**
      * Lists all Reference models.
+     *
      * @return mixed
      */
     public function actionIndex()
@@ -55,6 +57,7 @@ class ReferenceController extends Controller
 
     /**
      * Displays a single Reference model.
+     *
      * @param string $id
      * @return mixed
      */
@@ -62,12 +65,15 @@ class ReferenceController extends Controller
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
+
         ]);
     }
+
 
     /**
      * Creates a new Reference model.
      * If creation is successful, the browser will be redirected to the 'view' page.
+     *
      * @return mixed
      */
     public function actionCreate()
@@ -83,9 +89,11 @@ class ReferenceController extends Controller
         }
     }
 
+
     /**
      * Updates an existing Reference model.
      * If update is successful, the browser will be redirected to the 'view' page.
+     *
      * @param string $id
      * @return mixed
      */
@@ -102,9 +110,11 @@ class ReferenceController extends Controller
         }
     }
 
+
     /**
      * Deletes an existing Reference model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
+     *
      * @param string $id
      * @return mixed
      */
@@ -115,9 +125,11 @@ class ReferenceController extends Controller
         return $this->redirect(['index']);
     }
 
+
     /**
      * Finds the Reference model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
+     *
      * @param string $id
      * @return Reference the loaded model
      * @throws NotFoundHttpException if the model cannot be found
