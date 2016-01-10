@@ -10,11 +10,16 @@
 namespace jobrunner\inlitteris\controllers;
 
 use Yii;
-use jobrunner\inlitteris\models\Reference;
-use jobrunner\inlitteris\models\ReferenceSearch;
+use yii\base\Exception;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use jobrunner\inlitteris\models\Reference;
+use jobrunner\inlitteris\models\ReferenceType;
+use jobrunner\inlitteris\models\ReferenceSetting;
+use jobrunner\inlitteris\models\ReferenceSearch;
+use jobrunner\inlitteris\models\CitationStyle;
+use jobrunner\inlitteris\api\CiteProcessor;
 
 /**
  * ReferenceController implements the CRUD actions for Reference model.
@@ -46,7 +51,7 @@ class ReferenceController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new ReferenceSearch();
+        $searchModel  = Yii::createObject(ReferenceSearch::className());
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -136,7 +141,10 @@ class ReferenceController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Reference::findOne($id)) !== null) {
+        /** @var Reference $model */
+        $model = Yii::createObject('Reference');
+
+        if (null !== ($model = $model::findOne($id))) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
