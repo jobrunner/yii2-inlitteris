@@ -9,6 +9,7 @@
  */
 namespace jobrunner\inlitteris;
 
+use Yii;
 use \yii\base\Module as BaseModule;
 use yii\i18n\PhpMessageSource;
 
@@ -22,16 +23,30 @@ class Module extends BaseModule
 {
     public $controllerNamespace = 'jobrunner\inlitteris\controllers';
 
-    public $controllerMap = [
+    protected $_controllerMap = [
         'references' => 'jobrunner\inlitteris\controllers\ReferenceController',
     ];
 
-    public $modelMap = [
-        'Reference'         => 'jobrunner\inlitteris\models\Referece',
-        'ReferenceType'     => 'jobrunner\inlitteris\models\RefereceType',
-        'ReferenceSetting'  => 'jobrunner\inlitteris\models\RefereceSetting',
-
+    /** @var array Model's map */
+    protected $_modelMap = [
+        'Reference'         => 'jobrunner\inlitteris\models\Reference',
+        'ReferenceType'     => 'jobrunner\inlitteris\models\ReferenceType',
+        'ReferenceSetting'  => 'jobrunner\inlitteris\models\ReferenceSetting',
     ];
+
+    /** @var array Model map */
+    public $modelMap = [];
+
+    /** @var array Controller map */
+    public $controllerMap = [];
+
+
+    public $extensionMap = [
+        'CiteProcessor'     => 'jobrunner\inlitteris\api\CiteProcessor'
+    ];
+
+    /** @var int Default reference type */
+    public $defaultReferenceTypeId = 0;
 
     /**
      * @inheritdoc
@@ -49,6 +64,26 @@ class Module extends BaseModule
                 'sourceLanguage' => 'en',
                 'basePath' => __DIR__ . '/messages',
             ];
+        }
+
+        $this->modelMap = array_merge($this->_modelMap, $this->modelMap);
+
+        foreach ($this->modelMap as $name => $class) {
+            Yii::$container->set($name, $class);
+        }
+
+        foreach ($this->extensionMap as $name => $definition) {
+            $class      = 'jobrunner\\inlitteris\api\\' . $name;
+            $extName    = is_array($definition) ? $definition['class'] : $definition;
+
+            Yii::$container->set($class, $definition);
+
+            if ('CiteProcessor' == $name) {
+                Yii::$container->set($name, function () use ($extName) {
+
+                    return new $extName();
+                });
+            }
         }
     }
 }
