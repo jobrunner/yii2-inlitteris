@@ -42,6 +42,7 @@ class Reference extends \yii\db\ActiveRecord
         return 'reference';
     }
 
+    
     /**
      * @inheritdoc
      */
@@ -49,11 +50,28 @@ class Reference extends \yii\db\ActiveRecord
     {
         return [
             [['id'], 'required'],
-            [['referenceTypeId'], 'integer'],
-            [['authors', 'year', 'title', 'secondaryTitle', 'secondaryAuthors', 'tertiaryTitle', 'tertiaryAuthors', 'volume', 'number', 'pages', 'section', 'edition', 'place', 'publisher', 'isbn'], 'string'],
             [['id'], 'string', 'max' => 48],
+            [['referenceTypeId', 'formerReferenceTypeId'], 'integer'],
+            [[
+                'authors',
+                'year',
+                'title',
+                'secondaryTitle',
+                'secondaryAuthors',
+                'tertiaryTitle',
+                'tertiaryAuthors',
+                'volume',
+                'number',
+                'pages',
+                'section',
+                'edition',
+                'place',
+                'publisher',
+                'isbn',
+            ], 'string'],
         ];
     }
+
 
     /**
      * @inheritdoc
@@ -61,23 +79,23 @@ class Reference extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'referenceTypeId' => Yii::t('app', 'Reference Type'),
-            'authors' => Yii::t('app', 'Authors'),
-            'year' => Yii::t('app', 'Year'),
-            'title' => Yii::t('app', 'Title'),
-            'secondaryTitle' => Yii::t('app', 'Secondary Title'),
-            'secondaryAuthors' => Yii::t('app', 'Secondary Authors'),
-            'tertiaryTitle' => Yii::t('app', 'Tertiary Title'),
-            'tertiaryAuthors' => Yii::t('app', 'Tertiary Authors'),
-            'volume' => Yii::t('app', 'Volume'),
-            'number' => Yii::t('app', 'Number'),
-            'pages' => Yii::t('app', 'Pages'),
-            'section' => Yii::t('app', 'Section'),
-            'edition' => Yii::t('app', 'Edition'),
-            'place' => Yii::t('app', 'Place'),
-            'publisher' => Yii::t('app', 'Publisher'),
-            'isbn' => Yii::t('app', 'Isbn'),
+            'id'               => Yii::t('inlitteris', 'ID'),
+            'referenceTypeId'  => Yii::t('inlitteris', 'Reference Type'),
+            'authors'          => Yii::t('inlitteris', 'Authors'),
+            'year'             => Yii::t('inlitteris', 'Year'),
+            'title'            => Yii::t('inlitteris', 'Title'),
+            'secondaryTitle'   => Yii::t('inlitteris', 'Secondary Title'),
+            'secondaryAuthors' => Yii::t('inlitteris', 'Secondary Authors'),
+            'tertiaryTitle'    => Yii::t('inlitteris', 'Tertiary Title'),
+            'tertiaryAuthors'  => Yii::t('inlitteris', 'Tertiary Authors'),
+            'volume'           => Yii::t('inlitteris', 'Volume'),
+            'number'           => Yii::t('inlitteris', 'Number'),
+            'pages'            => Yii::t('inlitteris', 'Pages'),
+            'section'          => Yii::t('inlitteris', 'Section'),
+            'edition'          => Yii::t('inlitteris', 'Edition'),
+            'place'            => Yii::t('inlitteris', 'Place'),
+            'publisher'        => Yii::t('inlitteris', 'Publisher'),
+            'isbn'             => Yii::t('inlitteris', 'Isbn'),
         ];
     }
 
