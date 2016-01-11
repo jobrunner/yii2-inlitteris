@@ -61,6 +61,44 @@ Change your main configuration:
 ],
 ```
 
+### 5. yii2-inlitteris widgets
+
+There are a couple of helpful widgets:
+
+#### 5.1 Citation widget
+
+Standalone usage:
+
+```php
+/** @var $model Reference model */
+$citation = \jobrunner\inlitteris\widgets\Citation::widget([
+    'model'  => $model,
+]);
+
+echo $citation;
+```
+E.g. it outputs html for a citation like (Lastname, Year).
+
+Usage with citeproc-php you can do the following:
+
+```php
+use \jobrunner\inlitteris\widgets\Citation;
+
+$citation = Citation::widget([
+    'model'  => $model,
+    'csl'    => \AcademicPuma\CiteProc\CiteProc::loadStyleSheet('apa-annotated-bibliography'),
+    'locale' => 'en-US'
+]);
+```
+
+
+#### 5.2 Bibliography widget
+
+#### 5.3 ReferenceForm widget
+
+#### 5.4 ReferenceSearch widget
+
+
 ## Where do I go now?
 
 Hm, it's my little experiment. Sorry.
