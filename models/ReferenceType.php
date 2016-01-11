@@ -38,7 +38,6 @@ class ReferenceType extends \yii\db\ActiveRecord
             [['id', 'visible'], 'integer'],
             [['typeName'], 'string', 'max' => 40],
             [['id'], 'unique'],
-            [['id'], 'unique'],
         ];
     }
 
@@ -48,9 +47,9 @@ class ReferenceType extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
+            'id'       => 'ID',
             'typeName' => 'Type Name',
-            'visible' => 'Visible',
+            'visible'  => 'Visible',
         ];
     }
 
