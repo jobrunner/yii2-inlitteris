@@ -21,55 +21,49 @@ class CitationStyle extends Model
 {
     public $citationStyle;
 
-
     protected $defaultStyles = [
-        'apa-annotated-bibliography',
-        'zootaxa',
-        'zoological-journal-of-the-linnean-society',
-        'bibtex',
-        'nature',
-        'systematic-biology',
-        'annalen-des-naturhistorischen-museums-in-wien',
-        'din-1505-2',
-        "entomological-society-of-america",
-        "invertebrate-biology",
-        "iso690-author-date-en",
+        'apa-annotated-bibliography' => 'apa-annotated-bibliography',
+        'zootaxa' => 'zootaxa',
+        'zoological-journal-of-the-linnean-society' => 'zoological-journal-of-the-linnean-society',
+        'bibtex' => 'bibtex',
+        'nature' => 'nature',
+        'systematic-biology' => 'systematic-biology',
+        'annalen-des-naturhistorischen-museums-in-wien' => 'annalen-des-naturhistorischen-museums-in-wien',
+        'din-1505-2' => 'din-1505-2',
+        'entomological-society-of-america' => 'entomological-society-of-america',
+        'invertebrate-biology' => 'invertebrate-biology',
+        'iso690-author-date-en' => 'iso690-author-date-en',
     ];
 
 
-    public function _construct($config)
+    /**
+     * @inheritdoc
+     */
+    public function rules()
     {
-        $this->citationStyle = 'apa-annotated-bibliography';
+        return [
+            [['citationStyle'], 'required'],
+            [['citationStyle'], 'string'],
+        ];
     }
 
-    public function getAvailabels()
-    {
 
-    }
-
-    public function getEnabled()
+    public function kvAvailabels()
     {
-        return $this->defaultStyles;
+        // without citeproc-php only default is available
     }
 
 
     /**
-     * Returns localized key/value array of visible reference types
+     * Returns key/value array of enabled citation styles when citeproc-php is in use.
+     * Very bad idea.
      *
      * @return array
      */
-    public function kvListOfVisible()
+    public function kvEnabled()
     {
-        $models = ReferenceType::find()
-            ->select(['id', 'typeName'])
-            ->where('visible = 1')
-            ->all();
-
-        $typeList = [];
-        foreach ($models as $model) {
-            $typeList[$model->id] = Yii::t('inlitteris', $model->typeName);
-        }
-
-        return $typeList;
+        // without citeproc-php only default is available
+        // It's a hack, but here a selection of styles important for my personal purpose...
+        return $this->defaultStyles;
     }
 }

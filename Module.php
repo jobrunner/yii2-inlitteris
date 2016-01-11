@@ -40,13 +40,17 @@ class Module extends BaseModule
     /** @var array Controller map */
     public $controllerMap = [];
 
-
+    /** @var array Extension map */
     public $extensionMap = [
         'CiteProcessor'     => 'jobrunner\inlitteris\api\CiteProcessor'
     ];
 
     /** @var int Default reference type */
     public $defaultReferenceTypeId = 0;
+
+    /** @var string Default citation style */
+    public $defaultCitationStyle = 'default';
+
 
     /**
      * @inheritdoc

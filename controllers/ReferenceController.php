@@ -55,10 +55,36 @@ class ReferenceController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
+            'searchModel'  => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
+
+
+    /**
+     * Lists all References in a single bibliography.
+     *
+     * @return mixed
+     */
+    public function actionBibliography()
+    {
+        $searchModel        = Yii::createObject(ReferenceSearch::className());
+        $citationStyleModel = Yii::createObject(CitationStyle::className());
+        $dataProvider       = $searchModel->search(Yii::$app->request->queryParams);
+
+        $citationStyleModel->load(Yii::$app->request->get());
+
+        if (null == $citationStyleModel->citationStyle) {
+            $citationStyleModel->citationStyle = $this->module->defaultCitationStyle;
+        }
+
+        return $this->render('bibliography', [
+            'model'        => $citationStyleModel,
+            'searchModel'  => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
 
     /**
      * Displays a single Reference model.
@@ -101,7 +127,7 @@ class ReferenceController extends Controller
         } else {
 
             return $this->render('create', [
-                'model' => $model,
+                'model'              => $model,
                 'referenceTypeModel' => Yii::createObject('ReferenceType'),
             ]);
         }
@@ -117,7 +143,7 @@ class ReferenceController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        $model                 = $this->findModel($id);
         $formData              = Yii::$app->request->post($model->formName());
         $formerReferenceTypeId = isset($formData['formerReferenceTypeId']) ? $formData['formerReferenceTypeId'] : null;
 
@@ -128,7 +154,7 @@ class ReferenceController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
-                'model' => $model,
+                'model'              => $model,
                 'referenceTypeModel' => Yii::createObject('ReferenceType'),
             ]);
         }
