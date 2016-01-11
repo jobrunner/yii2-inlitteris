@@ -53,4 +53,25 @@ class ReferenceType extends \yii\db\ActiveRecord
             'visible' => 'Visible',
         ];
     }
+
+    /**
+     * Returns localized key/value array of visible reference types
+     *
+     * @return array
+     */
+    public function kvListOfVisible()
+    {
+        $models = ReferenceType::find()
+            ->select(['id', 'typeName'])
+            ->where('visible = 1')
+            ->all();
+
+        $typeList = [];
+        foreach ($models as $model) {
+            $typeList[$model->id] = Yii::t('inlitteris', $model->typeName);
+        }
+
+        return $typeList;
+    }
+
 }

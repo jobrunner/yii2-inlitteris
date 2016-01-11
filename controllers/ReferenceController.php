@@ -70,7 +70,6 @@ class ReferenceController extends Controller
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
-
         ]);
     }
 
@@ -83,13 +82,27 @@ class ReferenceController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Reference();
+        // should be set per owner in user settings
+        $defaultReferenceTypeId  = $this->module->defaultReferenceTypeId;
+        $model                   = Yii::createObject('Reference');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $model->load(Yii::$app->request->post());
+
+        if (null === $model->referenceTypeId) {
+            $model->referenceTypeId = $defaultReferenceTypeId;
+        }
+
+        if (($model->load(Yii::$app->request->post())) &&
+            ($model->referenceTypeId == $model->formerReferenceTypeId) &&
+            ($model->save()))
+        {
+
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+
             return $this->render('create', [
                 'model' => $model,
+                'referenceTypeModel' => Yii::createObject('ReferenceType'),
             ]);
         }
     }
@@ -105,12 +118,18 @@ class ReferenceController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $formData              = Yii::$app->request->post($model->formName());
+        $formerReferenceTypeId = isset($formData['formerReferenceTypeId']) ? $formData['formerReferenceTypeId'] : null;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if (($model->load(Yii::$app->request->post())) &&
+            ($model->referenceTypeId == $formerReferenceTypeId) &&
+            ($model->save())) {
+
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'referenceTypeModel' => Yii::createObject('ReferenceType'),
             ]);
         }
     }

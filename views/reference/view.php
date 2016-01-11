@@ -8,41 +8,52 @@
  * file that was distributed with this source code.
  */
 
-use yii\helpers\Html;
 use yii\widgets\DetailView;
-use jobrunner\inlitteris\widgets\Cite;
+use jobrunner\inlitteris\helpers\Html;
+use jobrunner\inlitteris\widgets\Citation;
+use jobrunner\inlitteris\widgets\Bibliography;
 
 /* @var $this yii\web\View */
 /* @var $model jobrunner\inlitteris\models\Reference */
 
-$this->title = $model->title;
+$citation = Citation::widget([
+    'model'  => $model,
+    'csl'    => \AcademicPuma\CiteProc\CiteProc::loadStyleSheet('apa-annotated-bibliography'),
+    'locale' => 'en-US'
+]);
+
+$breadcrumbCitation = strip_tags($citation);
+$breadcrumbCitation = preg_replace('/\R/u', '', $breadcrumbCitation);
+$breadcrumbCitation = trim($breadcrumbCitation, '()');
+
 $this->params['breadcrumbs'][] = ['label' => Yii::t('inlitteris', 'References'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = Html::encode($breadcrumbCitation);
 ?>
 <div class="reference-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a(Yii::t('inlitteris', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('inlitteris', 'Delete'), ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Yii::t('inlitteris', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-
-    <?= Cite::widget(['model' => $model])?>
+    <h2><?= Html::encode($breadcrumbCitation) ?></h2>
 
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'referenceTypeId',
+            'id:ntext',
+            [
+                'label'  => 'Citation',
+                'format' => 'html',
+                'value'  => $citation
+            ],
+            [
+                'label'  => 'Bibliography',
+                'format' => 'html',
+                'value'  => Bibliography::widget([
+                    'model'  => $model,
+                    'csl'    => \AcademicPuma\CiteProc\CiteProc::loadStyleSheet('apa-annotated-bibliography'),
+                    'locale' => 'en-US'
+                ])
+            ],
+            'referenceType.typeName:ntext',
             'authors:ntext',
-            'title:ntext',
+            'title:html',
             'secondaryTitle:ntext',
             'secondaryAuthors:ntext',
             'tertiaryTitle:ntext',
@@ -58,5 +69,15 @@ $this->params['breadcrumbs'][] = $this->title;
             'isbn:ntext',
         ],
     ]) ?>
+    <p style="text-align: center">
+        <?= Html::a(Yii::t('inlitteris', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('inlitteris', 'Delete'), ['delete', 'id' => $model->id], [
+            'class' => 'btn btn-danger',
+            'data' => [
+                'confirm' => Yii::t('inlitteris', 'Are you sure you want to delete this item?'),
+                'method' => 'post',
+            ],
+        ]) ?>
+    </p>
 
 </div>

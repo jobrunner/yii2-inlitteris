@@ -13,6 +13,8 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model jobrunner\inlitteris\models\Reference */
+/* @var $referenceTypeModel jobrunner\inlitteris\models\ReferenceType */
+/* @var $availableReferenceTypes array */
 
 $this->title = Yii::t('inlitteris', 'Create Reference');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('inlitteris', 'References'), 'url' => ['index']];
@@ -24,6 +26,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
+        'referenceTypeModel' => $referenceTypeModel,
+//        'availableReferenceTypes' => $availableReferenceTypes,
     ]) ?>
 
 </div>

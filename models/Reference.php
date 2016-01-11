@@ -34,6 +34,13 @@ use Yii;
  */
 class Reference extends \yii\db\ActiveRecord
 {
+    public $citationStyle;
+    public $citation;
+    public $bibliography;
+
+    /** @var  bool indicates that model only changes the referenceType */
+    public $formerReferenceTypeId;
+
     /**
      * @inheritdoc
      */
@@ -42,7 +49,7 @@ class Reference extends \yii\db\ActiveRecord
         return 'reference';
     }
 
-    
+
     /**
      * @inheritdoc
      */
@@ -78,6 +85,7 @@ class Reference extends \yii\db\ActiveRecord
      */
     public function attributeLabels()
     {
+        // Useless in the context of context dependend field meanings...
         return [
             'id'               => Yii::t('inlitteris', 'ID'),
             'referenceTypeId'  => Yii::t('inlitteris', 'Reference Type'),
@@ -100,4 +108,54 @@ class Reference extends \yii\db\ActiveRecord
     }
 
 
+    /**
+     * Returns ReferenceType of Reference
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getReferenceType()
+    {
+        return $this->hasOne(ReferenceType::className(), [
+            'id' => 'referenceTypeId'
+        ]);
+    }
+
+
+    public function kvFieldList()
+    {
+        $models = ReferenceSetting::find()
+            ->select(['genericName', 'contextualName'])
+            ->where('referenceTypeId = :referenceTypeId AND visible = 1', [
+                ':referenceTypeId' => $this->referenceTypeId
+            ])
+            ->orderBy('position')
+            ->all();
+
+        $fieldList = [];
+        foreach ($models as $model) {
+            $fieldList[$model->genericName] = Yii::t('inlitteris', $model->contextualName);
+        }
+
+        return $fieldList;
+    }
+
+
+    /** @inheritdoc */
+    public function beforeValidate()
+    {
+        /** @todo: Use a behaviour component here and remove ReferenceSearch::beforeValidate */
+        if ($this->isNewRecord && empty($this->id)) {
+
+            // assignes a pseudo-random UUID v4 to id property
+            $this->id = sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
+                mt_rand(0, 0xffff), mt_rand(0, 0xffff),
+                mt_rand(0, 0xffff),
+                mt_rand(0, 0x0fff) | 0x4000,
+                mt_rand(0, 0x3fff) | 0x8000,
+                mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff)
+            );
+        }
+
+        return parent::beforeValidate();
+    }
 }
