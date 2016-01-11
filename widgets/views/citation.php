@@ -9,10 +9,9 @@
  */
 
 /* @var $this yii\web\View */
-/* @var $model jobrunner\inlitteris\models\Reference */
 /* @var $widgetId */
+/* @var $reference jobrunner\inlitteris\models\Reference */
+/* @var $row callable */
 ?>
-<div id="inlitteris-referece-widget-<?php echo $widgetId?>">
-    <?= $model->authors ?>, <?= $model->year ?> <?= $model->title ?>
-</div>
+<span id="inlitteris-referece-widget-<?php echo $widgetId?>"><?= $row($reference, "citation") ?></span>
 
