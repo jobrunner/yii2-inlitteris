@@ -25,7 +25,25 @@ class ReferenceSearch extends Reference
     public function rules()
     {
         return [
-            [['id', 'authors', 'title', 'secondaryTitle', 'secondaryAuthors', 'tertiaryTitle', 'tertiaryAuthors', 'year', 'volume', 'number', 'pages', 'section', 'edition', 'place', 'publisher', 'isbn'], 'safe'],
+            [[
+                'id',
+                'referenceTypeId',
+                'authors',
+                'title',
+                'secondaryTitle',
+                'secondaryAuthors',
+                'tertiaryTitle',
+                'tertiaryAuthors',
+                'year',
+                'volume',
+                'number',
+                'pages',
+                'section',
+                'edition',
+                'place',
+                'publisher',
+                'isbn'
+            ], 'safe'],
             [['referenceTypeId'], 'integer'],
         ];
     }
@@ -69,7 +87,8 @@ class ReferenceSearch extends Reference
             'referenceTypeId' => $this->referenceTypeId,
         ]);
 
-        $query->andFilterWhere(['like', 'id', $this->id])
+        $query
+            ->andFilterWhere(['like', 'id', $this->id])
             ->andFilterWhere(['like', 'authors', $this->authors])
             ->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'secondaryTitle', $this->secondaryTitle])
