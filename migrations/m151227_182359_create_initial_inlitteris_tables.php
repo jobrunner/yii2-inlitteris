@@ -1,8 +1,18 @@
 <?php
+/*
+ * This file is part of the inlitteris project.
+ *
+ * (c) Jo Brunner <http://github.com/jobrunner/yii2-inlitteris>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 use yii\db\Migration;
 
-
+/**
+ * Class m151227_182359_create_initial_inlitteris_tables
+ */
 class m151227_182359_create_initial_inlitteris_tables extends Migration
 {
     public function safeUp()
@@ -61,72 +71,64 @@ class m151227_182359_create_initial_inlitteris_tables extends Migration
         ],
         [
             // Journal Articles
-            [ 0, 'authors',          'authors',           0, true],
-            [ 0, 'title',            'title',             1, true],
-            [ 0, 'secondaryTitle',   'secondaryTitle',    2, true],
-            [ 0, 'secondaryAuthors', 'secondaryAuthors',  3, true],
-            [ 0, 'tertiaryTitle',    'tertiaryTitle',     4, true],
-            [ 0, 'tertiaryAuthors',  'tertiaryAuthors',   5, true],
-            [ 0, 'year',             'year',              8, true],
-            [ 0, 'volume',           'volume',            9, true],
-            [ 0, 'number',           'number',           10, true],
-            [ 0, 'pages',            'pages',            12, true],
-            [ 0, 'section',          'section',          13, true],
-            [ 0, 'edition',          'edition',          14, true],
-            [ 0, 'place',            'place',            15, true],
-            [ 0, 'publisher',        'publisher',        16, true],
-            [ 0, 'isbn',             'isbn',             18, true],
+            [ 0, 'authors',          'Author',             0, true],
+            [ 0, 'year',             'Year',               1, true],
+            [ 0, 'title',            'Title',              2, true],
+            [ 0, 'secondaryTitle',   'Journal',            3, true],
+            [ 0, 'place',            'Place/City',         4, true],
+            [ 0, 'publisher',        'Publisher',          5, true],
+            [ 0, 'volume',           'Volume',             6, true],
+            [ 0, 'number',           'Issue',              7, true],
+            [ 0, 'pages',            'Pages',              8, true],
+            [ 0, 'section',          'Start Page',         9, false],
+            [ 0, 'isbn',             'ISSN',              10, true],
 
             // Books
-            [ 1, 'authors',          'authors',           0, true],
-            [ 1, 'title',            'title',             1, true],
-            [ 1, 'secondaryTitle',   'secondaryTitle',    2, true],
-            [ 1, 'secondaryAuthors', 'secondaryAuthors',  3, true],
-            [ 1, 'tertiaryTitle',    'tertiaryTitle',     4, true],
-            [ 1, 'tertiaryAuthors',  'tertiaryAuthors',   5, true],
-            [ 1, 'year',             'year',              8, true],
-            [ 1, 'volume',           'volume',            9, true],
-            [ 1, 'number',           'number',           10, true],
-            [ 1, 'pages',            'pages',            12, true],
-            [ 1, 'section',          'section',          13, true],
-            [ 1, 'edition',          'edition',          14, true],
-            [ 1, 'place',            'place',            15, true],
-            [ 1, 'publisher',        'publisher',        16, true],
-            [ 1, 'isbn',             'isbn',             18, true],
+            [ 1, 'authors',          'Author',             0, true],
+            [ 1, 'year',             'Year',               1, true],
+            [ 1, 'title',            'Title',              2, true],
+            [ 1, 'secondaryAuthors', 'Series Editor',      3, true],
+            [ 1, 'secondaryTitle',   'Series Title',       4, true],
+            [ 1, 'place',            'Place/City',         4, true],
+            [ 1, 'publisher',        'Publisher',          5, true],
+            [ 1, 'volume',           'Volume',             6, true],
+            [ 1, 'number',           'Series Volume',      7, true],
+            [ 1, 'pages',            'Number of Pages',    8, true],
+            [ 1, 'section',          'Pages',              9, false],
+            [ 1, 'tertiaryAuthors',  'Editor',            10, false],
+            [ 1, 'edition',          'Edition',           11, true],
+            [ 1, 'isbn',             'ISBN',              12, true],
 
-            // Book sections
-            [ 7, 'authors',          'authors',           0, true],
-            [ 7, 'title',            'title',             1, true],
-            [ 7, 'secondaryTitle',   'secondaryTitle',    2, true],
-            [ 7, 'secondaryAuthors', 'secondaryAuthors',  3, true],
-            [ 7, 'tertiaryTitle',    'tertiaryTitle',     4, true],
-            [ 7, 'tertiaryAuthors',  'tertiaryAuthors',   5, true],
-            [ 7, 'year',             'year',              8, true],
-            [ 7, 'volume',           'volume',            9, true],
-            [ 7, 'number',           'number',           10, true],
-            [ 7, 'pages',            'pages',            12, true],
-            [ 7, 'section',          'section',          13, true],
-            [ 7, 'edition',          'edition',          14, true],
-            [ 7, 'place',            'place',            15, true],
-            [ 7, 'publisher',        'publisher',        16, true],
-            [ 7, 'isbn',             'isbn',             18, true],
+            // Book section
+            [ 7, 'authors',          'Author',            0, true],
+            [ 7, 'year',             'Year',              1, true],
+            [ 7, 'title',            'Title',             2, true],
+            [ 7, 'secondaryAuthors', 'Editor',            3, true],
+            [ 7, 'secondaryTitle',   'Book Title',        4, true],
+            [ 7, 'place',            'Place/City',        5, true],
+            [ 7, 'publisher',        'Publisher',         6, true],
+            [ 7, 'volume',           'Volume',            7, true],
+            [ 7, 'number',           'Series Volume',     8, true],
+            [ 7, 'pages',            'Number of Pages',   9, true],
+            [ 7, 'section',          'Chapter/Pages',    10, true],
+            [ 7, 'tertiaryAuthors',  'Series Editor',    11, true],
+            [ 7, 'tertiaryTitle',    'Series Title',     12, true],
+            [ 7, 'edition',          'Edition',          13, true],
+            [ 7, 'isbn',             'ISBN',             14, true],
 
-            // Edited books
-            [ 9, 'authors',          'authors',           0, true],
-            [ 9, 'title',            'title',             1, true],
-            [ 9, 'secondaryTitle',   'secondaryTitle',    2, true],
-            [ 9, 'secondaryAuthors', 'secondaryAuthors',  3, true],
-            [ 9, 'tertiaryTitle',    'tertiaryTitle',     4, true],
-            [ 9, 'tertiaryAuthors',  'tertiaryAuthors',   5, true],
-            [ 9, 'year',             'year',              8, true],
-            [ 9, 'volume',           'volume',            9, true],
-            [ 9, 'number',           'number',           10, true],
-            [ 9, 'pages',            'pages',            12, true],
-            [ 9, 'section',          'section',          13, true],
-            [ 9, 'edition',          'edition',          14, true],
-            [ 9, 'place',            'place',            15, true],
-            [ 9, 'publisher',        'publisher',        16, true],
-            [ 9, 'isbn',             'isbn',             18, true],
+            // Edited book
+            [ 9, 'authors',          'Editor',             0, true],
+            [ 9, 'year',             'Year',               1, true],
+            [ 9, 'title',            'Book Title',         2, true],
+            [ 9, 'secondaryTitle',   'Series Book Editor', 3, true],
+            [ 9, 'secondaryAuthors', 'Series Book Title',  4, true],
+            [ 9, 'place',            'Place/City',         5, true],
+            [ 9, 'publisher',        'Publisher',          6, true],
+            [ 9, 'volume',           'Volume',             7, true],
+            [ 9, 'number',           'Series Volume',      8, true],
+            [ 9, 'pages',            'Pages',              9, true],
+            [ 9, 'edition',          'Edition',           10, true],
+            [ 9, 'isbn',             'ISBN',              11, true],
         ]);
     }
     
