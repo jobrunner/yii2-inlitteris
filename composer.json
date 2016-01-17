@@ -30,5 +30,8 @@
       "npm-asset-library": "vendor/npm",
       "bower-asset-library": "vendor/bower"
     }
+  },
+  "suggest": {
+    "academicpuma/citeproc-php": "Allows more advanced formatting options for this module"
   }
 }
