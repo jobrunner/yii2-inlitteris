@@ -32,15 +32,13 @@ class Bibliography extends \yii\base\Widget
     /** @var  Reference Optional model for a single bibliography entry */
     public $model;
 
-    public $styleName = 'default';
-
     /**
-     * @var string CSL (Cite Style Language) XML configuring optional citeproc-php
+     * @var string CSL (Cite Style Language) XML configuring optional citeproc-php. Will be ignored without using citeproc-php.
      */
     public $csl;
 
     /**
-     * @var string RFC 1766 language code used by a CiteProcessor
+     * @var string RFC 1766 language code used by a CiteProcessor. Will be ignored without using citeproc-php.
      */
     public $locale = 'en-US';
 
