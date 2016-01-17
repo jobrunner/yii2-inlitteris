@@ -63,9 +63,9 @@ class Citation extends \yii\base\Widget
         $references[$this->model->id] = $reference;
 
         return $this->render('citation', [
-            'widgetId'   => $this->getId(),
+            'widgetId'  => $this->getId(),
             'reference' => $reference,
-            'row'        => function($reference, $mode) use ($citeProcessor) {
+            'row'       => function($reference, $mode) use ($citeProcessor) {
                 return $citeProcessor->render($reference, $mode);
             }
         ]);
