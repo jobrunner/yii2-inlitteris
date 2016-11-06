@@ -24,9 +24,9 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="reference-index">
     <h1><?= Html::encode($this->title) ?></h1>
-<!--    <p>-->
-        <?php // = Html::a(Yii::t('inlitteris', 'Create Reference'), ['create'], ['class' => 'btn btn-success']) ?>
-<!--    </p>-->
+    <p>
+        <?= Html::a(Yii::t('inlitteris', 'Create Reference'), ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
 
     <?php $enabledStyles = $model->kvEnabled(); ?>
     <?php if (count($enabledStyles) > 0):?>
