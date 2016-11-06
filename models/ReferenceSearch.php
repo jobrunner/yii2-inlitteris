@@ -91,7 +91,7 @@ class ReferenceSearch extends Reference
         ]);
 
         $query
-            ->andFilterWhere(['like', 'id', $this->id])
+            // ->andFilterWhere(['like', 'id', $this->id])
             ->andFilterWhere(['like', 'authors', $this->authors])
             ->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'secondaryTitle', $this->secondaryTitle])
