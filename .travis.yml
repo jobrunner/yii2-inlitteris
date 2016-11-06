@@ -5,5 +5,6 @@ php:
   - '5.4'
 
 install:
-  - composer global require "fxp/composer-asset-plugin:1.0.0"
+  - composer self-update --stable
+  - composer global require "fxp/composer-asset-plugin:1.2.2"
   - composer install
