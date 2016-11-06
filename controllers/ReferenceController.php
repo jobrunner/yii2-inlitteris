@@ -46,10 +46,6 @@ class ReferenceController extends Controller
      */
     public function actionIndex()
     {
-        // wenn ich's so mache,
-        // - kann ich mich verschreiben.
-        // - habe ich den Vorteil, dass die Model-Version in Module.php festgelegt wird
-        // - weiß ich noch nicht, wie ich parallel v1 und v2 als RESTfull-API abieten soll.
         $searchModel  = Yii::createObject('ReferenceSearch');
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
