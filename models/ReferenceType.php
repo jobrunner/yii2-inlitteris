@@ -60,7 +60,8 @@ class ReferenceType extends \yii\db\ActiveRecord
      */
     public function kvListOfVisible()
     {
-        $models = ReferenceType::find()
+        $instance = Yii::createObject('ReferenceType');
+        $models = $instance::find()
             ->select(['id', 'typeName'])
             ->where('visible = 1')
             ->all();

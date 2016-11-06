@@ -115,7 +115,8 @@ class Reference extends \yii\db\ActiveRecord
      */
     public function getReferenceType()
     {
-        return $this->hasOne(ReferenceType::className(), [
+        $instance = Yii::createObject('ReferenceType');
+        return $this->hasOne($instance, [
             'id' => 'referenceTypeId'
         ]);
     }
@@ -123,7 +124,8 @@ class Reference extends \yii\db\ActiveRecord
 
     public function kvFieldList()
     {
-        $models = ReferenceSetting::find()
+        $instance = Yii::createObject('ReferenceSetting');
+        $models = $instance::find()
             ->select(['genericName', 'contextualName'])
             ->where('referenceTypeId = :referenceTypeId AND visible = 1', [
                 ':referenceTypeId' => $this->referenceTypeId

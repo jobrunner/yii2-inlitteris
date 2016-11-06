@@ -14,11 +14,6 @@ use yii\base\Exception;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use jobrunner\inlitteris\models\Reference;
-use jobrunner\inlitteris\models\ReferenceType;
-use jobrunner\inlitteris\models\ReferenceSetting;
-use jobrunner\inlitteris\models\ReferenceSearch;
-use jobrunner\inlitteris\models\CitationStyle;
 use jobrunner\inlitteris\api\CiteProcessor;
 
 /**
@@ -51,7 +46,11 @@ class ReferenceController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel  = Yii::createObject(ReferenceSearch::className());
+        // wenn ich's so mache,
+        // - kann ich mich verschreiben.
+        // - habe ich den Vorteil, dass die Model-Version in Module.php festgelegt wird
+        // - weiß ich noch nicht, wie ich parallel v1 und v2 als RESTfull-API abieten soll.
+        $searchModel  = Yii::createObject('ReferenceSearch');
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -68,8 +67,8 @@ class ReferenceController extends Controller
      */
     public function actionBibliography()
     {
-        $searchModel        = Yii::createObject(ReferenceSearch::className());
-        $citationStyleModel = Yii::createObject(CitationStyle::className());
+        $searchModel        = Yii::createObject('ReferenceSearch');
+        $citationStyleModel = Yii::createObject('CitationStyle');
         $dataProvider       = $searchModel->search(Yii::$app->request->queryParams);
 
         $citationStyleModel->load(Yii::$app->request->get());

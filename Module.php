@@ -32,6 +32,8 @@ class Module extends BaseModule
         'Reference'         => 'jobrunner\inlitteris\models\Reference',
         'ReferenceType'     => 'jobrunner\inlitteris\models\ReferenceType',
         'ReferenceSetting'  => 'jobrunner\inlitteris\models\ReferenceSetting',
+        'ReferenceSearch'   => 'jobrunner\inlitteris\models\ReferenceSearch',
+        'CitationStyle'     => 'jobrunner\inlitteris\models\CitationStyle',
     ];
 
     /** @var array Model map */
