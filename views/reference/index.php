@@ -60,7 +60,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'edition:ntext',
             // 'place:ntext',
             // 'publisher:ntext',
-            // 'isbn:ntext',
+             'isbn:ntext',
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
