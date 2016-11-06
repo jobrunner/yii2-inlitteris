@@ -22,6 +22,7 @@ class CitationStyle extends Model
     public $citationStyle;
 
     protected $defaultStyles = [
+// If you decide to use citeproc-php, comment this out. Its optional.
 //        'apa-annotated-bibliography' => 'apa-annotated-bibliography',
 //        'zootaxa' => 'zootaxa',
 //        'zoological-journal-of-the-linnean-society' => 'zoological-journal-of-the-linnean-society',

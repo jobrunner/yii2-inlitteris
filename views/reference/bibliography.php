@@ -28,6 +28,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php // = Html::a(Yii::t('inlitteris', 'Create Reference'), ['create'], ['class' => 'btn btn-success']) ?>
 <!--    </p>-->
 
+    <?php $enabledStyles = $model->kvEnabled(); ?>
+    <?php if (count($enabledStyles) > 0):?>
     <?php $form = ActiveForm::begin([
         'method' => 'get'
     ]); ?>
@@ -36,6 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ['onchange' => 'this.form.submit()']
     )?>
     <?php ActiveForm::end(); ?>
+    <?php endif ?>
 
     <?= Bibliography::widget([
         'dataProvider' => $dataProvider,
