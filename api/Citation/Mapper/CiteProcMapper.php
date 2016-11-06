@@ -48,17 +48,17 @@ class CiteProcMapper
     public function mapBook()
     {
         $reference                  = (object)[];
-
         $reference->{'type'}        = 'book';
-
         $reference->{'author'}      = [];
+        $authorsStrings             = explode("\n", $this->_model->authors);
 
-        $authorsStrings = explode("\n", $this->_model->authors);
         foreach ($authorsStrings as $authorString) {
             $author = Author::initWithString($authorString);
+
             if (!isset($reference->{'author'})) {
                 $reference->{'author'} = [];
             }
+
             $reference->{'author'}[] = (object)[
                 'family' => $author->familyName,
                 'given'  => $author->givenName
@@ -66,29 +66,28 @@ class CiteProcMapper
         }
 
         // Book can be also an edited Book
-        $reference->{'editor'}  = [];
-        $editorStrings = explode("\n", $this->_model->secondaryAuthors);
+        $reference->{'editor'}      = [];
+        $editorStrings              = explode("\n", $this->_model->secondaryAuthors);
+
         foreach ($editorStrings as $authorString) {
             $author = Author::initWithString($authorString);
+
             if (!isset($reference->{'editor'})) {
                 $reference->{'editor'} = [];
             }
+
             $reference->{'editor'}[] = (object)[
                 'family' => $author->familyName,
                 'given'  => $author->givenName
             ];
         }
 
-
-
-        // hier fehlt noch die einiges!!!
-
-
-
         $reference->{'title'}           = $this->_model->title;
+        $reference->{'volume'}          = $this->_model->volume;
         $reference->{'publisher'}       = $this->_model->publisher;
         $reference->{'publisher-place'} = $this->_model->place;
         $reference->{'number-of-pages'} = $this->_model->pages;
+        $reference->{'ISBN'}            = $this->_model->isbn;
 
         $reference->{'issued'} = (object)[
             "date-parts" => [[$this->_model->year]],

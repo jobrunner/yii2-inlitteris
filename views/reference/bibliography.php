@@ -30,14 +30,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php $enabledStyles = $model->kvEnabled(); ?>
     <?php if (count($enabledStyles) > 0):?>
-    <?php $form = ActiveForm::begin([
-        'method' => 'get'
-    ]); ?>
-    <?= $form->field($model, 'citationStyle')->dropDownList(
-        $model->kvEnabled(),
-        ['onchange' => 'this.form.submit()']
-    )?>
-    <?php ActiveForm::end(); ?>
+        <?php $form = ActiveForm::begin([
+            'method' => 'get'
+        ]); ?>
+        <?= $form->field($model, 'citationStyle')->dropDownList(
+            $model->kvEnabled(),
+            ['onchange' => 'this.form.submit()']
+        )?>
+        <?php ActiveForm::end(); ?>
     <?php endif ?>
 
     <?= Bibliography::widget([
