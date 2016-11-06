@@ -65,9 +65,8 @@ class ReferenceSearch extends Reference
      */
     public function search($params)
     {
-        /** @var  $model Reference */
-        $model = Yii::createObject('Reference');
-        $query = $model->find();
+        $instance = Yii::createObject('Reference');
+        $query = $instance::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
