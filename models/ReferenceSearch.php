@@ -110,8 +110,4 @@ class ReferenceSearch extends Reference
 
         return $dataProvider;
     }
-
-    public function beforeValidate()
-    {
-    }
 }
