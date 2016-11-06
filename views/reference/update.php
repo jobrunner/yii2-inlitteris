@@ -18,8 +18,9 @@ use jobrunner\inlitteris\widgets\Citation;
 
 $citation = Citation::widget([
     'model'  => $model,
-    'csl'    => \AcademicPuma\CiteProc\CiteProc::loadStyleSheet('apa-annotated-bibliography'),
-    'locale' => 'en-US'
+    // Because cite proc is optional it's commented out. Here an example for usage:
+    // 'csl'    => \AcademicPuma\CiteProc\CiteProc::loadStyleSheet('apa-annotated-bibliography'),
+    // 'locale' => 'en-US'
 ]);
 
 $breadcrumbCitation = strip_tags($citation);

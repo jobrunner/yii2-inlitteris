@@ -39,8 +39,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= Bibliography::widget([
         'dataProvider' => $dataProvider,
-        'csl'          => \AcademicPuma\CiteProc\CiteProc::loadStyleSheet($model->citationStyle),
-        'locale'       => 'en-US'
+        // Because cite proc is optional it's commented out. Here an example for usage:
+        // 'csl'          => \AcademicPuma\CiteProc\CiteProc::loadStyleSheet($model->citationStyle),
+        // 'locale'       => 'en-US'
     ])?>
 
 </div>

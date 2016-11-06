@@ -22,17 +22,17 @@ class CitationStyle extends Model
     public $citationStyle;
 
     protected $defaultStyles = [
-        'apa-annotated-bibliography' => 'apa-annotated-bibliography',
-        'zootaxa' => 'zootaxa',
-        'zoological-journal-of-the-linnean-society' => 'zoological-journal-of-the-linnean-society',
-        'bibtex' => 'bibtex',
-        'nature' => 'nature',
-        'systematic-biology' => 'systematic-biology',
-        'annalen-des-naturhistorischen-museums-in-wien' => 'annalen-des-naturhistorischen-museums-in-wien',
-        'din-1505-2' => 'din-1505-2',
-        'entomological-society-of-america' => 'entomological-society-of-america',
-        'invertebrate-biology' => 'invertebrate-biology',
-        'iso690-author-date-en' => 'iso690-author-date-en',
+//        'apa-annotated-bibliography' => 'apa-annotated-bibliography',
+//        'zootaxa' => 'zootaxa',
+//        'zoological-journal-of-the-linnean-society' => 'zoological-journal-of-the-linnean-society',
+//        'bibtex' => 'bibtex',
+//        'nature' => 'nature',
+//        'systematic-biology' => 'systematic-biology',
+//        'annalen-des-naturhistorischen-museums-in-wien' => 'annalen-des-naturhistorischen-museums-in-wien',
+//        'din-1505-2' => 'din-1505-2',
+//        'entomological-society-of-america' => 'entomological-society-of-america',
+//        'invertebrate-biology' => 'invertebrate-biology',
+//        'iso690-author-date-en' => 'iso690-author-date-en',
     ];
 
 
