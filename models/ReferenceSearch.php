@@ -70,6 +70,11 @@ class ReferenceSearch extends Reference
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' =>[
+                'defaultOrder' => [
+                    'authors' => SORT_DESC
+                ]
+            ]
         ]);
 
         $this->load($params);
